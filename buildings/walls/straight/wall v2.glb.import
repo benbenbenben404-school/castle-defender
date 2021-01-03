@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.godot/imported/wall v2.glb-bc909bf96be2c23c166aa15ce6bf24f9.scn"
+path="res://.godot/imported/wall v2.glb-2e322ff9977f98a6f061e7eef546250a.scn"
 
 [deps]
 
-source_file="res://units/wall v2.glb"
-dest_files=[ "res://.godot/imported/wall v2.glb-bc909bf96be2c23c166aa15ce6bf24f9.scn" ]
+source_file="res://buildings/walls/straight/wall v2.glb"
+dest_files=[ "res://.godot/imported/wall v2.glb-2e322ff9977f98a6f061e7eef546250a.scn" ]
 
 [params]
 
