@@ -1,64 +1,50 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://world/TestWorld.gd" type="Script" id=1]
-[ext_resource path="res://buildings/walls.meshlib" type="MeshLibrary" id=2]
+[ext_resource path="res://buildings/walls/wall_lib.meshlib" type="MeshLibrary" id=1]
 
-[sub_resource type="ProceduralSkyMaterial" id=3]
+[sub_resource type="ProceduralSkyMaterial" id=1]
 
-[sub_resource type="Sky" id=4]
-sky_material = SubResource( 3 )
+[sub_resource type="Sky" id=2]
+sky_material = SubResource( 1 )
 
-[sub_resource type="Environment" id=1]
-background_energy = 1.15
-sky = SubResource( 4 )
+[sub_resource type="Environment" id=3]
+background_mode = 2
+sky = SubResource( 2 )
+ssao_enabled = true
 sdfgi_enabled = true
-sdfgi_use_occlusion = true
 sdfgi_read_sky_light = true
 
-[sub_resource type="CameraEffects" id=7]
-
-[sub_resource type="ArrayMesh" id=2]
-
-[sub_resource type="StandardMaterial3D" id=5]
-cull_mode = 2
-albedo_color = Color( 0.105882, 0.258824, 0.0980392, 1 )
-
-[sub_resource type="PlaneMesh" id=6]
+[sub_resource type="PlaneMesh" id=4]
 
 [node name="World" type="Node3D"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.104507 )
 script = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
-camera_effects = SubResource( 7 )
+environment = SubResource( 3 )
 script = null
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform( -0.395282, -0.63055, 0.667952, 0.027767, 0.718638, 0.69483, -0.91814, 0.293201, -0.266556, 0.285909, 7.1554, 0.0451298 )
-shadow_enabled = true
-script = null
-
-[node name="TestWorld" type="MeshInstance3D" parent="."]
-mesh = SubResource( 2 )
-script = ExtResource( 1 )
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform( 34.8141, 0, 0, 0, 0.93877, 0, 0, 0, 453.808, 0.37036, -0.273473, 0.382681 )
-material_override = SubResource( 5 )
+transform = Transform( 59.7867, 0, 0, 0, 1, 0, 0, 0, 157.167, 0, 0, 0 )
 gi_mode = 1
-mesh = SubResource( 6 )
+mesh = SubResource( 4 )
 material/0 = null
 script = null
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource( 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0 )
+mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 1, 1 )
 cell_scale = 0.15
 data = {
-"cells": PackedInt32Array( 65518, 50, 655360, 65518, 51, 655360, 65527, 51, 655360, 65518, 52, 655360, 65518, 53, 655360, 65517, 54, 655360, 65518, 54, 655360, 65517, 55, 655360, 65518, 55, 655360, 65517, 56, 655360, 65518, 56, 655360 )
+"cells": PackedInt32Array( 65533, 0, 0, 65533, 1, 0, 0, 2, 0, 65533, 2, 0, 65533, 3, 0, 65533, 65530, 0, 65534, 65530, 0, 65533, 65531, 0, 65533, 65532, 0, 65533, 65533, 0, 65533, 65534, 0, 0, 65535, 0, 65533, 65535, 0, 65534, 65535, 0 )
 }
 script = null
 __meta__ = {
 "_editor_clip_": 0
 }
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform( 0.318331, -0.519854, 0.792728, 0, 0.836229, 0.548381, -0.94798, -0.174566, 0.266197, 0.132969, 4.72657, -0.311664 )
+light_bake_mode = 2
+shadow_enabled = true
+script = null
