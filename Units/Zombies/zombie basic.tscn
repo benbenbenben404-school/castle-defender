@@ -86,6 +86,6 @@ process_mode = 0
 root_motion_track = NodePath("Armature/Skeleton:bone")
 parameters/OneShot/active = false
 parameters/StateMachine/playback = SubResource( 12 )
-parameters/TimeScale/scale = 0.5
+parameters/TimeScale/scale = 1.0
 
 [editable path="basic zombie"]
