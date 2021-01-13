@@ -5,5 +5,4 @@ sky_top_color = Color( 1, 1, 1, 1 )
 
 [resource]
 background_sky = SubResource( 1 )
-background_energy = 12.31
-ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_color = Color( 0.419608, 0.419608, 0.419608, 1 )
