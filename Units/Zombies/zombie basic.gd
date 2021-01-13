@@ -13,8 +13,9 @@ export var anim_speed = 1
 onready var anim_tree = $"AnimationTree"
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	anim_tree.advance(rand_range(0,1)*1.6)
+	anim_tree.set("parameters/TimeScale/scale",rand_range(1.4,2.0))
+	print(anim_tree.get("parameters/TimeScale/scale"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

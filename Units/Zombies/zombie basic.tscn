@@ -38,8 +38,8 @@ start_node = "Run"
 
 [sub_resource type="AnimationNodeTimeScale" id=11]
 
-[sub_resource type="AnimationNodeBlendTree" id=4]
-graph_offset = Vector2( -468, 12 )
+[sub_resource type="AnimationNodeBlendTree" id=13]
+graph_offset = Vector2( -323.313, -133.5 )
 nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( -114, 228 )
 nodes/OneShot/node = SubResource( 5 )
@@ -79,13 +79,13 @@ transform = Transform( 1, 0, 0, 0, 0.0678412, 0.997696, 0, -0.997696, 0.0678412,
 shape = SubResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 4 )
+tree_root = SubResource( 13 )
 anim_player = NodePath("../basic zombie/AnimationPlayer")
 active = true
 process_mode = 0
 root_motion_track = NodePath("Armature/Skeleton:bone")
 parameters/OneShot/active = false
 parameters/StateMachine/playback = SubResource( 12 )
-parameters/TimeScale/scale = 1.0
+parameters/TimeScale/scale = 11.31
 
 [editable path="basic zombie"]
