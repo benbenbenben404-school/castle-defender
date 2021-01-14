@@ -1,9 +1,86 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Buildings/wall v2.glb" type="PackedScene" id=1]
 [ext_resource path="res://Buildings/Wall.gd" type="Script" id=2]
+[ext_resource path="res://Buildings/Building destroy.shader" type="Shader" id=3]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="OpenSimplexNoise" id=5]
+octaves = 5
+period = 159.4
+persistence = 0.183
+
+[sub_resource type="NoiseTexture" id=4]
+width = 1000
+height = 1000
+seamless = true
+noise = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/NOISE_THRESHOLD = -0.95
+shader_param/albedo = Color( 0.364706, 0.364706, 0.364706, 1 )
+shader_param/specular = 0.0
+shader_param/metallic = 0.0
+shader_param/roughness = 0.626
+shader_param/point_size = 0.0
+shader_param/uv1_scale = null
+shader_param/uv1_offset = null
+shader_param/uv2_scale = null
+shader_param/uv2_offset = null
+shader_param/NOISE_PATTERN = SubResource( 4 )
+
+[sub_resource type="Shader" id=6]
+code = "shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec4 albedo : hint_color;
+uniform sampler2D texture_albedo : hint_albedo;
+uniform float specular;
+uniform float metallic;
+uniform float roughness : hint_range(0,1);
+uniform float point_size : hint_range(0,128);
+uniform sampler2D texture_ambient_occlusion : hint_white;
+uniform vec4 ao_texture_channel;
+uniform float ao_light_affect;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	SPECULAR = specular;
+	AO = dot(texture(texture_ambient_occlusion,base_uv),ao_texture_channel);
+	AO_LIGHT_AFFECT = ao_light_affect;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/albedo = Color( 1, 1, 1, 1 )
+shader_param/specular = 0.5
+shader_param/metallic = 0.0
+shader_param/roughness = 1.0
+shader_param/point_size = 1.0
+shader_param/ao_texture_channel = Plane( 1, 0, 0, 0 )
+shader_param/ao_light_affect = 0.48
+shader_param/uv1_scale = Vector3( 1, 1, 1 )
+shader_param/uv1_offset = Vector3( 0, 0, 0 )
+shader_param/uv2_scale = Vector3( 1, 1, 1 )
+shader_param/uv2_offset = Vector3( 0, 0, 0 )
+
+[sub_resource type="BoxShape" id=3]
 extents = Vector3( 1, 5.50344, 4.92284 )
 
 [node name="Wall" type="KinematicBody"]
@@ -12,12 +89,21 @@ script = ExtResource( 2 )
 [node name="wall v2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0429169, 4.49279, -5.40366 )
 
+[node name="Cube" parent="wall v2" index="0"]
+material/0 = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0429169, 4.49279, -5.40366 )
+material_override = SubResource( 7 )
+
 [node name="Area" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.54186, -5.33241 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Area"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.54186, -5.33241 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
+
+[editable path="wall v2"]
