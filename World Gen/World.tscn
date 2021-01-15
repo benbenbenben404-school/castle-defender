@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://World Gen/WorldGen.gd" type="Script" id=1]
+[ext_resource path="res://World Gen/WorldGenLines.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+tree_depth = 7
+
+[sub_resource type="SpatialMaterial" id=2]
+params_cull_mode = 2
+
+[sub_resource type="ArrayMesh" id=5]
+
+[node name="World" type="Spatial"]
+script = ExtResource( 1 )
+world_lines = SubResource( 4 )
+
+[node name="WorldMesh" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172546, -0.0371115, -0.0735674 )
+material_override = SubResource( 2 )
+mesh = SubResource( 5 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.999204, 1.86116e-09, -0.0399049, -0.0305886, 0.642199, 0.765927, 0.0256269, 0.766538, -0.641688, 34.5271, 42.1209, -11.1771 )
