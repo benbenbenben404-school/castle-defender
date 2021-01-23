@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World Gen/WorldMat.tres" type="Material" id=1]
+
+[sub_resource type="ArrayMesh" id=1]
+resource_local_to_scene = true
+
+[node name="Chunk" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.172546, -0.0371115, -0.0735674 )
+material_override = ExtResource( 1 )
+mesh = SubResource( 1 )

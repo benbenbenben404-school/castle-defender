@@ -3,4 +3,6 @@
 [ext_resource path="res://Testing/DevCam.gd" type="Script" id=1]
 
 [node name="DevCam" type="Camera"]
+current = true
+far = 4000.0
 script = ExtResource( 1 )

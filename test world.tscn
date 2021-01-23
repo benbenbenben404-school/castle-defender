@@ -1,19 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Buildings/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Units/Zombies/zombie basic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Testing/DevCam.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 1000, 1000 )
 
-[sub_resource type="ConcavePolygonShape" id=2]
-data = PoolVector3Array( 500, 0, 500, -500, 0, 500, 500, 0, -500, -500, 0, 500, -500, 0, -500, 500, 0, -500 )
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 1000, 1, 1000 )
 
 [sub_resource type="GIProbeData" id=3]
-bounds = AABB( -119.124, -107.071, -157.557, 238.249, 214.141, 315.114 )
-cell_size = 2.46183
-to_cell_xform = Transform( 0.406202, 0, 0, 0, 0.406202, 0, 0, 0, 0.406202, 48.3886, 43.4923, 64 )
-dynamic_data = PoolIntArray( 0, 8, 128, 128, 128, 1, 0, 0, 0, 0, 0, 0, 7, 0, 1, 3465, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+bounds = AABB( -119.124, -107.071, -157.557, 238.248, 214.142, 315.114 )
+cell_size = 0.615457
+to_cell_xform = Transform( 1.62481, 0, 0, 0, 1.62481, 0, 0, 0, 1.62481, 193.554, 173.97, 256 )
+dynamic_data = PoolIntArray( 0, 10, 512, 512, 512, 1, 0, 0, 0, 1094713344, 0, 0, 7, 0, 9, 3813, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
 dynamic_range = 4
 energy = 0.17
 bias = 1.5
@@ -43,10 +44,8 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="MeshInstance"]
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1819, 13.756, 56.9339 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 4 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.944216, -0.184415, -0.272852, 0, -0.82851, 0.559974, -0.329328, -0.528736, -0.782292, -1.73544, 24.5187, -60.2599 )
@@ -56,28 +55,32 @@ shadow_enabled = true
 shadow_color = Color( 0.6, 0.6, 0.6, 1 )
 
 [node name="Zombie" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -83.9429, 0.00552907, 2.95399e-10 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -83.943, 0, 0 )
 
 [node name="Zombie2" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -85.0533, 0.00552907, 15.9309 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -85.053, 0, 15.931 )
 
 [node name="Zombie3" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -69.894, -0.2, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -69.894, 0, 0 )
 
 [node name="Zombie4" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -87.4535, 0.00552907, -7.14215 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -87.453, 0, -7.142 )
 
 [node name="Zombie5" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -69.8944, 0.00552907, 13.5543 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -69.894, 0, 13.554 )
 
 [node name="Zombie6" parent="." instance=ExtResource( 2 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -69.8944, 0.00552907, -19.6603 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -69.894, 0, -19.66 )
 
 [node name="GIProbe" type="GIProbe" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0125046, 0.119373, -0.00825882 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1862, 0.119373, -0.00825882 )
+subdiv = 3
 extents = Vector3( 119.124, 107.071, 157.557 )
 energy = 0.17
 data = SubResource( 3 )
+
+[node name="DevCam" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.5684, 48.9448 )
 
 [editable path="Spatial/Wall2"]
 

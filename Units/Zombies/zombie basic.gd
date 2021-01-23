@@ -19,9 +19,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-#	if !$"Forward Check".get_overlapping_areas():
+	if $"Forward Check".get_overlapping_areas():
+		anim_tree.set("parameters/attack/active",true)
+	
 	velocity = anim_tree.get_root_motion_transform()
-	velocity.origin.y+=0
+
 	move_and_slide(velocity.origin*110)
 	#print(velocity.origin*100)
 	#anim_tree.advance(delta*10)
